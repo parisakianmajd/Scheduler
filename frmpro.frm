@@ -269,14 +269,14 @@ End Sub
 Private Sub cmdenter_Click()
 Dim interror As Integer
 Dim i As Integer
-' if any one of the textboxes is left blank, its value is supposed to be zero
+' the default value is 0
 If ctxt.Text = "" Then ctxt.Text = 0
 If ptxt.Text = "" Then ptxt.Text = 0
 ccount = ctxt.Text
 pcount = ptxt.Text
-' the number of processors sholdn`t be less than two! becouse its a multiprocessor system ....and we need to have at least two processes
+'  number of processors  >= 2.. a multiprocessor system
 If (ccount < 2) Or (pcount < 2) Then
-interror = MsgBox("You have not entered a proper value,Please try again", vbCritical)
+interror = MsgBox("Invalid value", vbCritical)
 ctxt.Text = ""
 ptxt.Text = ""
 Exit Sub
@@ -293,7 +293,7 @@ For i = 1 To pcount
     Text1(Text1.UBound).Visible = True
     Text1(Text1.UBound).Left = (i * 500) + 450
 Next i
-'adjusting the form`s size
+'adjusting the size of the form
   Frame1.Width = Text1(pcount).Left + 800
   If Frame1.Width < 3900 Then Frame1.Width = 3900
   frmpro.Width = Frame1.Width + 400
@@ -320,7 +320,7 @@ Call mutation
 Call find_fitness
 End Sub
 Private Sub ptxt_KeyPress(KeyAscii As Integer)
-' the entry of this textboxes should be numeric
+' only numeric values are accepted
   If (KeyAscii > 26) Then 'if is not a control key
   If InStr(strvalid, Chr(KeyAscii)) = 0 Then
     KeyAscii = 0
@@ -340,7 +340,7 @@ frmpro.Width = 4695
 Frame1.Height = 1455
 Frame1.Width = 4335
 strvalid = "0123456789"
-population = 50 'we make 50 chromosomes as the first generation
+population = 50 'make 50 chromosomes as the first generation
 End Sub
 Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
   If (KeyAscii > 26) Then 'if is not a control key
@@ -355,10 +355,9 @@ Dim j As Integer
 Dim k As Integer
 For k = 1 To population
 For i = 1 To pcount
-'each chromosome is shown as a binary matrix. which its rows shows the number of processes(pcount)
-'and its column is the number of processors(pcount)
-'each process is run on a processor--- this means in each column matrix just one row is 1 and others are 0
-'we find this row randomly
+'each chromosome is shown as a binary matrix. with the rows showing the number of processes(pcount)
+'and the column showing the number of processors(pcount)
+'each process is run on a processor---i.e. each column matrix just one row (selected randomly) is 1 and the rest are 0
 '----------------------------------
 'this proc initializes the first generation (random matrixes)
 'finds a random number between 1 & ccount (that is a random row in each column)
