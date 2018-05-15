@@ -3,9 +3,9 @@ Attribute VB_Name = "Module1"
 Public ptmatrix(1 To 50, 1 To 9, 1 To 9) As Boolean
 Public pcount As String 'number of processes
 Public ccount As String 'number of processors
-Public t(1 To 9) As Single 'tasks list
+Public t(1 To 9) As Single 'list of tasks
 Public cpu(1 To 50, 1 To 9) As Integer
-Public tft(1 To 50) As Integer 'total finish time for each chromosome
+Public tft(1 To 50) As Integer 'total finish time of each chromosome
 Public cpu_job(1 To 50, 1 To 9) As String
 Public ft(1 To 9) As Single
 Public wt(1 To 9) As Single
